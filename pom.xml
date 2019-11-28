@@ -1,0 +1,215 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>fr.istic.synthlab</groupId>
+	<artifactId>synthlab</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>synthlab</name>
+	<developers>
+		<developer>
+			<id>Florent</id>
+			<name>Florent Berthelot</name>
+			<email>florentius.b@gmail.com</email>
+			<roles>
+				<role>Software developer</role>
+			</roles>
+			<organization>Istic 2013/2014</organization>
+			<timezone>+1</timezone>
+		</developer>
+		<developer>
+			<id>Jonathan</id>
+			<name>Jonathan Delétoile</name>
+			<email>lechok502@gmail.com</email>
+			<roles>
+				<role>Software developer</role>
+			</roles>
+			<organization>Istic 2013/2014</organization>
+			<timezone>+1</timezone>
+		</developer>
+		<developer>
+			<id>Valentin</id>
+			<name>Valentin Dijkstra</name>
+			<email>valentindijkstra@gmail.com</email>
+			<roles>
+				<role>Software developer</role>
+			</roles>
+			<organization>Istic 2013/2014</organization>
+			<timezone>+1</timezone>
+		</developer>
+		<developer>
+			<id>Marc</id>
+			<name>Marc Favereau</name>
+			<email>favereau.marc.m2gl@gmail.com</email>
+			<roles>
+				<role>Software developer</role>
+			</roles>
+			<organization>Istic 2013/2014</organization>
+			<timezone>+1</timezone>
+		</developer>
+		<developer>
+			<id>Mickaël</id>
+			<name>Mickaël Herrouet</name>
+			<email>mickaelherrouet@hotmail.fr</email>
+			<roles>
+				<role>Software developer</role>
+			</roles>
+			<organization>Istic 2013/2014</organization>
+			<timezone>+1</timezone>
+		</developer>
+		<developer>
+			<id>Laurent</id>
+			<name>Laurent Legendre</name>
+			<email>legendre.laurent50@gmail.com</email>
+			<roles>
+				<role>Software developer</role>
+			</roles>
+			<organization>Istic 2013/2014</organization>
+			<timezone>+1</timezone>
+		</developer>
+	</developers>
+	<packaging>jar</packaging>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<junit-version>4.11</junit-version>
+		<mockito-version>1.9.5</mockito-version>
+		<java-version>1.7</java-version>
+		<javadoc-version>2.9.1</javadoc-version>
+		<compiler-version>3.1</compiler-version>
+		<clean-version>2.5</clean-version>
+		<jsyn-version>16.6.4</jsyn-version>
+		<pmd-version>3.0.1</pmd-version>
+		<checkstyle-version>2.11</checkstyle-version>
+		<shade-version>2.2</shade-version>
+		<jdom-version>2.0.5</jdom-version>
+		<powermock.version>1.5.4</powermock.version>
+	</properties>
+
+
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>${checkstyle-version}</version>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>checkstyle</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+				<configuration>
+					<linkXRef>false</linkXRef>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+				<version>${pmd-version}</version>
+				<configuration>
+					<linkXRef>false</linkXRef>
+				</configuration>
+			</plugin>
+		</plugins>
+	</reporting>
+
+	<build>
+		<plugins>
+			<!-- Javadoc plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>${javadoc-version}</version>
+			</plugin>
+
+			<!-- Compiler plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${compiler-version}</version>
+				<configuration>
+					<source>${java-version}</source>
+					<target>${java-version}</target>
+					<encoding>UTF-8</encoding>
+					<showWarnings>true</showWarnings>
+					<showDeprecation>true</showDeprecation>
+				</configuration>
+			</plugin>
+
+			<!-- Clean plugin -->
+			<plugin>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>${clean-version}</version>
+			</plugin>
+
+			<!-- Shade plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>${shade-version}</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+						<configuration>
+							<transformers>
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+									<mainClass>fr.istic.synthlab.Synthlab</mainClass>
+								</transformer>
+							</transformers>
+							<artifactSet>
+								<excludes>
+								</excludes>
+							</artifactSet>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+		</plugins>
+	</build>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit-version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.jsyn</groupId>
+			<artifactId>jsyn</artifactId>
+			<version>${jsyn-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>${mockito-version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jdom</groupId>
+			<artifactId>jdom2</artifactId>
+			<version>${jdom-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-module-junit4-legacy</artifactId>
+			<version>${powermock.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-api-mockito</artifactId>
+			<version>${powermock.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+		    <groupId>com.apple</groupId>
+		    <artifactId>AppleJavaExtensions</artifactId>
+		    <version>1.4</version>
+		</dependency>
+	</dependencies>
+</project>

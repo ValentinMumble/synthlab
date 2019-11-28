@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<content size="3" skin="METAL">
+  <liste_modules>
+    <module ligne="0" position="0" type="VCOA">
+      <attenuation ident="octave" value="1.0" />
+      <attenuation ident="freqfine" value="-84.65" />
+      <jack ident="0_0-lineOutSine" />
+    </module>
+    <module ligne="0" position="3" type="VCOA">
+      <attenuation ident="octave" value="11.0" />
+      <attenuation ident="freqfine" value="13.64" />
+      <jack ident="0_3-lineOutSawtooth" />
+    </module>
+    <module ligne="0" position="6" type="VCFLP">
+      <attenuation ident="freq" value="1000.0" />
+      <attenuation ident="reso" value="0.1" />
+      <jack ident="0_6-input" />
+      <jack ident="0_6-freqModInput" />
+      <jack ident="0_6-output" />
+    </module>
+    <module ligne="1" position="0" type="VCA">
+      <attenuation ident="amplif" value="-23.4" />
+      <jack ident="1_0-amIn" />
+      <jack ident="1_0-signIn" />
+      <jack ident="1_0-signOut" />
+    </module>
+    <module ligne="1" position="2" type="EG">
+      <attenuation ident="0" value="0.8718258" />
+      <attenuation ident="1" value="0.08642098183637774" />
+      <attenuation ident="2" value="63.01" />
+      <attenuation ident="3" value="0.01" />
+      <jack ident="1_2-gate" />
+      <jack ident="1_2-output" />
+    </module>
+    <module ligne="1" position="5" type="REP">
+      <jack ident="1_5-input" />
+      <jack ident="1_5-output1" />
+      <jack ident="1_5-output2" />
+    </module>
+    <module ligne="2" position="3" type="SCOP">
+      <attenuation ident="0" value="18.528799762833636" />
+      <jack ident="2_3-input" />
+      <jack ident="2_3-output" />
+    </module>
+    <module ligne="2" position="7" type="OUT" isMute="true">
+      <attenuation ident="0" value="0.0" />
+      <jack ident="2_7-lineIn" />
+    </module>
+  </liste_modules>
+  <liste_cables>
+    <cable port1="0_3-lineOutSawtooth" port2="0_6-input" red="51" green="0" blue="204" />
+    <cable port1="1_0-signIn" port2="0_6-output" red="255" green="204" blue="51" />
+    <cable port1="1_2-output" port2="1_0-amIn" red="51" green="255" blue="51" />
+    <cable port1="0_0-lineOutSine" port2="1_5-input" red="204" green="0" blue="0" />
+    <cable port1="1_5-output1" port2="0_6-freqModInput" red="153" green="0" blue="153" />
+    <cable port1="1_5-output2" port2="1_2-gate" red="153" green="0" blue="153" />
+    <cable port1="1_0-signOut" port2="2_3-input" red="0" green="204" blue="204" />
+    <cable port1="2_3-output" port2="2_7-lineIn" red="0" green="204" blue="204" />
+  </liste_cables>
+</content>

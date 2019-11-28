@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<content size="2" skin="LEATHER">
+  <liste_modules>
+    <module ligne="0" position="0" type="VCOA">
+      <attenuation ident="octave" value="12.0" />
+      <attenuation ident="freqfine" value="-29.540000000000006" />
+      <jack ident="0_0-lineInFM" />
+      <jack ident="0_0-lineOutTrinagular" />
+    </module>
+    <module ligne="0" position="3" type="VCOA">
+      <attenuation ident="octave" value="11.0" />
+      <attenuation ident="freqfine" value="13.64" />
+      <jack ident="0_3-lineInFM" />
+      <jack ident="0_3-lineOutTrinagular" />
+    </module>
+    <module ligne="1" position="2" type="REP">
+      <jack ident="1_2-input" />
+      <jack ident="1_2-output1" />
+      <jack ident="1_2-output2" />
+    </module>
+    <module ligne="1" position="3" type="SCOP">
+      <attenuation ident="0" value="5.0" />
+      <jack ident="1_3-input" />
+      <jack ident="1_3-output" />
+    </module>
+    <module ligne="1" position="7" type="OUT" isMute="true">
+      <attenuation ident="0" value="0.0" />
+      <jack ident="1_7-lineIn" />
+    </module>
+  </liste_modules>
+  <liste_cables>
+    <cable port1="1_3-output" port2="1_7-lineIn" red="153" green="255" blue="255" />
+    <cable port1="0_0-lineOutTrinagular" port2="0_3-lineInFM" red="255" green="51" blue="0" />
+    <cable port1="0_3-lineOutTrinagular" port2="1_2-input" red="255" green="51" blue="0" />
+    <cable port1="1_2-output1" port2="0_0-lineInFM" red="255" green="51" blue="0" />
+    <cable port1="1_3-input" port2="1_2-output2" red="255" green="51" blue="0" />
+  </liste_cables>
+</content>
