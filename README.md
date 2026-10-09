@@ -36,9 +36,23 @@ Student project, ISTIC 2013/2014.
 
 They live in `src/main/resources/montages/`. Patches you save with **File → Save** use the same XML format.
 
-## Run it on macOS
+## Play it
 
-### As a Mac app
+### On a Mac
+
+Download [`dist/Synthlab-macOS.zip`](dist/Synthlab-macOS.zip), unzip it, and move **Synthlab.app** to your Applications folder. Java is bundled inside, so there is nothing else to install.
+
+The app is not signed. If macOS blocks it the first time, right-click it in Finder and choose **Open**.
+
+### Anywhere with Java 21
+
+```bash
+java -jar dist/Synthlab.jar
+```
+
+## Build it
+
+### The Mac app
 
 Needs Java 21 and Maven:
 
@@ -46,19 +60,11 @@ Needs Java 21 and Maven:
 brew install openjdk@21 maven
 ```
 
-Build `Synthlab.app` (Java is bundled inside, about 75 MB):
+Build `Synthlab.app` (about 75 MB) and refresh both files in `dist/`:
 
 ```bash
 ./build-mac-app.sh
 ```
-
-Copy it to your Applications folder:
-
-```bash
-cp -R target/app/Synthlab.app /Applications/
-```
-
-The app is not signed. If macOS blocks it the first time, right-click it in Finder and choose **Open**.
 
 ### From the command line
 

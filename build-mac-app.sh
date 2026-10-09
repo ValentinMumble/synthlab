@@ -1,5 +1,6 @@
 #!/bin/bash
-# Builds a standalone Synthlab.app (Java runtime included) into target/app.
+# Builds a standalone Synthlab.app (Java runtime included) into target/app,
+# plus dist/Synthlab-macOS.zip (the app) and dist/Synthlab.jar (any OS with Java 21).
 # Needs JDK 21+ (for jpackage) and Maven: brew install openjdk@21 maven
 set -euo pipefail
 
@@ -35,5 +36,11 @@ cp target/synthlab-0.0.1-SNAPSHOT.jar target/jpackage-input/
     --java-options "-Dapple.awt.application.name=Synthlab" \
     --dest target/app
 
-echo "Built target/app/Synthlab.app"
+mkdir -p dist
+cp target/synthlab-0.0.1-SNAPSHOT.jar dist/Synthlab.jar
+rm -f dist/Synthlab-macOS.zip
+# ditto keeps the app bundle's symlinks and permissions intact
+ditto -c -k --keepParent target/app/Synthlab.app dist/Synthlab-macOS.zip
+
+echo "Built target/app/Synthlab.app, dist/Synthlab-macOS.zip and dist/Synthlab.jar"
 echo "Install it with: cp -R target/app/Synthlab.app /Applications/"
