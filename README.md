@@ -1,4 +1,4 @@
-# Synthlab
+# 🎛️ Synthlab
 
 A modular synthesizer written in Java (Swing + [JSyn](http://www.softsynth.com/jsyn/)).
 You drop modules into a rack, patch them together with cables, and turn knobs.
