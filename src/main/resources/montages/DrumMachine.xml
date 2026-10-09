@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<content size="4" skin="METAL">
+  <liste_modules>
+    <!-- Row 0: kick clock, kick envelope, kick oscillator -->
+    <module ligne="0" position="0" type="VCOA">
+      <attenuation ident="octave" value="2.0" />
+      <attenuation ident="freqfine" value="0.0" />
+      <jack ident="0_0-lineOutSquare" />
+    </module>
+    <module ligne="0" position="3" type="EG">
+      <attenuation ident="2" value="1.0" />
+      <attenuation ident="0" value="0.001" />
+      <attenuation ident="1" value="0.12" />
+      <attenuation ident="3" value="0.05" />
+      <jack ident="0_3-gate" />
+      <jack ident="0_3-output" />
+    </module>
+    <module ligne="0" position="6" type="VCOA">
+      <attenuation ident="octave" value="6.0" />
+      <attenuation ident="freqfine" value="60.0" />
+      <jack ident="0_6-lineInFM" />
+      <jack ident="0_6-lineOutSine" />
+    </module>
+    <!-- Row 1: kick envelope boost and split, kick amp, mixer -->
+    <module ligne="1" position="0" type="VCA">
+      <attenuation ident="amplif" value="8.0" />
+      <jack ident="1_0-signIn" />
+      <jack ident="1_0-signOut" />
+    </module>
+    <module ligne="1" position="2" type="REP">
+      <jack ident="1_2-input" />
+      <jack ident="1_2-output1" />
+      <jack ident="1_2-output2" />
+    </module>
+    <module ligne="1" position="3" type="VCA">
+      <attenuation ident="amplif" value="-30.0" />
+      <jack ident="1_3-amIn" />
+      <jack ident="1_3-signIn" />
+      <jack ident="1_3-signOut" />
+    </module>
+    <module ligne="1" position="5" type="MIX">
+      <attenuation ident="1" value="0.0" />
+      <attenuation ident="2" value="0.0" />
+      <attenuation ident="3" value="0.0" />
+      <attenuation ident="4" value="0.0" />
+      <jack ident="1_5-input1" />
+      <jack ident="1_5-input2" />
+      <jack ident="1_5-output" />
+    </module>
+    <!-- Row 2: hat clock (twice the kick), hat envelope and boost, noise -->
+    <module ligne="2" position="0" type="VCOA">
+      <attenuation ident="octave" value="3.0" />
+      <attenuation ident="freqfine" value="0.0" />
+      <jack ident="2_0-lineOutSquare" />
+    </module>
+    <module ligne="2" position="3" type="EG">
+      <attenuation ident="2" value="1.0" />
+      <attenuation ident="0" value="0.001" />
+      <attenuation ident="1" value="0.04" />
+      <attenuation ident="3" value="0.03" />
+      <jack ident="2_3-gate" />
+      <jack ident="2_3-output" />
+    </module>
+    <module ligne="2" position="6" type="VCA">
+      <attenuation ident="amplif" value="12.0" />
+      <jack ident="2_6-signIn" />
+      <jack ident="2_6-signOut" />
+    </module>
+    <module ligne="2" position="8" type="WN" isMute="false">
+      <jack ident="2_8-output" />
+    </module>
+    <!-- Row 3: hat high-pass, hat amp, scope, speakers -->
+    <module ligne="3" position="0" type="VCFHP">
+      <attenuation ident="freq" value="7000.0" />
+      <jack ident="3_0-input" />
+      <jack ident="3_0-output" />
+    </module>
+    <module ligne="3" position="2" type="VCA">
+      <attenuation ident="amplif" value="-30.0" />
+      <jack ident="3_2-amIn" />
+      <jack ident="3_2-signIn" />
+      <jack ident="3_2-signOut" />
+    </module>
+    <module ligne="3" position="4" type="SCOP">
+      <jack ident="3_4-input" />
+      <jack ident="3_4-output" />
+    </module>
+    <module ligne="3" position="8" type="OUT" isMute="false">
+      <attenuation ident="0" value="-20.0" />
+      <jack ident="3_8-lineIn" />
+    </module>
+  </liste_modules>
+  <liste_cables>
+    <!-- kick -->
+    <cable port1="0_0-lineOutSquare" port2="0_3-gate" red="255" green="204" blue="51" />
+    <cable port1="0_3-output" port2="1_0-signIn" red="51" green="255" blue="51" />
+    <cable port1="1_0-signOut" port2="1_2-input" red="51" green="255" blue="51" />
+    <cable port1="1_2-output1" port2="0_6-lineInFM" red="51" green="255" blue="51" />
+    <cable port1="1_2-output2" port2="1_3-amIn" red="51" green="255" blue="51" />
+    <cable port1="0_6-lineOutSine" port2="1_3-signIn" red="0" green="204" blue="204" />
+    <cable port1="1_3-signOut" port2="1_5-input1" red="0" green="204" blue="204" />
+    <!-- hats -->
+    <cable port1="2_0-lineOutSquare" port2="2_3-gate" red="255" green="204" blue="51" />
+    <cable port1="2_3-output" port2="2_6-signIn" red="51" green="255" blue="51" />
+    <cable port1="2_6-signOut" port2="3_2-amIn" red="51" green="255" blue="51" />
+    <cable port1="2_8-output" port2="3_0-input" red="153" green="153" blue="153" />
+    <cable port1="3_0-output" port2="3_2-signIn" red="153" green="153" blue="153" />
+    <cable port1="3_2-signOut" port2="1_5-input2" red="153" green="153" blue="153" />
+    <!-- out -->
+    <cable port1="1_5-output" port2="3_4-input" red="0" green="204" blue="204" />
+    <cable port1="3_4-output" port2="3_8-lineIn" red="0" green="204" blue="204" />
+  </liste_cables>
+</content>

@@ -72,14 +72,14 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<junit-version>4.11</junit-version>
 		<mockito-version>1.9.5</mockito-version>
-		<java-version>1.7</java-version>
+		<java-version>21</java-version>
 		<javadoc-version>2.9.1</javadoc-version>
-		<compiler-version>3.1</compiler-version>
+		<compiler-version>3.13.0</compiler-version>
 		<clean-version>2.5</clean-version>
 		<jsyn-version>16.6.4</jsyn-version>
 		<pmd-version>3.0.1</pmd-version>
 		<checkstyle-version>2.11</checkstyle-version>
-		<shade-version>2.2</shade-version>
+		<shade-version>3.6.0</shade-version>
 		<jdom-version>2.0.5</jdom-version>
 		<powermock.version>1.5.4</powermock.version>
 	</properties>
@@ -171,6 +171,13 @@
 
 		</plugins>
 	</build>
+	<repositories>
+		<!-- JSyn is not on Maven Central: the jar from lib/ is served from this folder -->
+		<repository>
+			<id>project-local</id>
+			<url>file://${project.basedir}/repo</url>
+		</repository>
+	</repositories>
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -205,11 +212,6 @@
 			<artifactId>powermock-api-mockito</artifactId>
 			<version>${powermock.version}</version>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
-		    <groupId>com.apple</groupId>
-		    <artifactId>AppleJavaExtensions</artifactId>
-		    <version>1.4</version>
 		</dependency>
 	</dependencies>
 </project>

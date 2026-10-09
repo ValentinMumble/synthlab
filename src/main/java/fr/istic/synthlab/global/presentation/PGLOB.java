@@ -11,6 +11,8 @@ import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.AWTEventListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -214,7 +216,7 @@ public class PGLOB extends JFrame implements IPGLOB {
         color = Color.BLACK;
 
         // 80% de la taille de l'écran
-        this.setSize(1180, 744);
+        this.setSize(1200, 744);
         this.setPreferredSize(this.getSize());
 
         JPanel panelLeft = new JPanel();
@@ -310,7 +312,7 @@ public class PGLOB extends JFrame implements IPGLOB {
 
         scrollPane = new JScrollPane(main,
                 JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
-                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPane.getVerticalScrollBar().setUnitIncrement(50);
         scrollPane.getVerticalScrollBar().setBlockIncrement(20);
 
@@ -328,7 +330,8 @@ public class PGLOB extends JFrame implements IPGLOB {
             }
         });
 
-        this.setResizable(false);
+        this.setResizable(true);
+        this.setMinimumSize(new Dimension(640, 480));
 
         this.setJMenuBar(createMenuBar());
         this.setLayout(new GridLayout());
@@ -349,6 +352,15 @@ public class PGLOB extends JFrame implements IPGLOB {
         container.add(panelLeft, BorderLayout.WEST);
         container.add(scrollPane, BorderLayout.CENTER);
         topPane.add(container);
+        // The layered pane has no layout manager: keep the rack filling it
+        // when the window is resized
+        topPane.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                container.setBounds(0, 0, topPane.getWidth(), topPane.getHeight());
+                container.revalidate();
+            }
+        });
         this.add(topPane);
 
         control.initPanelContent();

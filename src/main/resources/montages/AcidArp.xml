@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<content size="5" skin="BLACK">
+  <liste_modules>
+    <!-- Row 0: clock -> sequencer -->
+    <module ligne="0" position="0" type="VCOA">
+      <attenuation ident="octave" value="3.0" />
+      <attenuation ident="freqfine" value="60.0" />
+      <jack ident="0_0-lineOutSquare" />
+    </module>
+    <module ligne="0" position="3" type="REP">
+      <jack ident="0_3-input" />
+      <jack ident="0_3-output1" />
+      <jack ident="0_3-output2" />
+    </module>
+    <module ligne="0" position="4" type="SEQ">
+      <attenuation ident="1" value="0.0" />
+      <attenuation ident="2" value="0.0" />
+      <attenuation ident="3" value="1.0" />
+      <attenuation ident="4" value="0.0" />
+      <attenuation ident="5" value="0.5833" />
+      <attenuation ident="6" value="0.8333" />
+      <attenuation ident="7" value="0.25" />
+      <attenuation ident="8" value="-0.1667" />
+      <jack ident="0_4-gate" />
+      <jack ident="0_4-output" />
+    </module>
+    <module ligne="0" position="7" type="REP">
+      <jack ident="0_7-input" />
+      <jack ident="0_7-output1" />
+      <jack ident="0_7-output2" />
+    </module>
+    <!-- Row 1: saw at A2 plus square sub-octave, mixed -->
+    <module ligne="1" position="0" type="VCOA">
+      <attenuation ident="octave" value="8.0" />
+      <attenuation ident="freqfine" value="0.0" />
+      <jack ident="1_0-lineInFM" />
+      <jack ident="1_0-lineOutSawtooth" />
+    </module>
+    <module ligne="1" position="3" type="VCOA">
+      <attenuation ident="octave" value="7.0" />
+      <attenuation ident="freqfine" value="0.0" />
+      <jack ident="1_3-lineInFM" />
+      <jack ident="1_3-lineOutSquare" />
+    </module>
+    <module ligne="1" position="6" type="MIX">
+      <attenuation ident="1" value="0.0" />
+      <attenuation ident="2" value="-6.0" />
+      <attenuation ident="3" value="0.0" />
+      <attenuation ident="4" value="0.0" />
+      <jack ident="1_6-input1" />
+      <jack ident="1_6-input2" />
+      <jack ident="1_6-output" />
+    </module>
+    <!-- Row 2: envelope, boosted x4 by a VCA, split; slow LFO -->
+    <module ligne="2" position="0" type="EG">
+      <attenuation ident="2" value="15.0" />
+      <attenuation ident="0" value="0.005" />
+      <attenuation ident="1" value="0.18" />
+      <attenuation ident="3" value="0.12" />
+      <jack ident="2_0-gate" />
+      <jack ident="2_0-output" />
+    </module>
+    <module ligne="2" position="3" type="VCA">
+      <attenuation ident="amplif" value="12.0" />
+      <jack ident="2_3-signIn" />
+      <jack ident="2_3-signOut" />
+    </module>
+    <module ligne="2" position="5" type="REP">
+      <jack ident="2_5-input" />
+      <jack ident="2_5-output1" />
+      <jack ident="2_5-output2" />
+    </module>
+    <module ligne="2" position="6" type="VCOA">
+      <attenuation ident="octave" value="1.0" />
+      <attenuation ident="freqfine" value="-60.0" />
+      <jack ident="2_6-lineOutSine" />
+    </module>
+    <!-- Row 3: filter CV mix, resonant low-pass, output VCA -->
+    <module ligne="3" position="0" type="MIX">
+      <attenuation ident="1" value="-6.0" />
+      <attenuation ident="2" value="-20.0" />
+      <attenuation ident="3" value="0.0" />
+      <attenuation ident="4" value="0.0" />
+      <jack ident="3_0-input1" />
+      <jack ident="3_0-input2" />
+      <jack ident="3_0-output" />
+    </module>
+    <module ligne="3" position="3" type="VCFLP">
+      <attenuation ident="freq" value="220.0" />
+      <attenuation ident="reso" value="3.0" />
+      <jack ident="3_3-input" />
+      <jack ident="3_3-freqModInput" />
+      <jack ident="3_3-output" />
+    </module>
+    <module ligne="3" position="5" type="VCA">
+      <attenuation ident="amplif" value="-30.0" />
+      <jack ident="3_5-amIn" />
+      <jack ident="3_5-signIn" />
+      <jack ident="3_5-signOut" />
+    </module>
+    <!-- Row 4: scope and speakers -->
+    <module ligne="4" position="0" type="SCOP">
+      <jack ident="4_0-input" />
+      <jack ident="4_0-output" />
+    </module>
+    <module ligne="4" position="4" type="OUT" isMute="false">
+      <attenuation ident="0" value="-47.0" />
+      <jack ident="4_4-lineIn" />
+    </module>
+  </liste_modules>
+  <liste_cables>
+    <!-- clock -->
+    <cable port1="0_0-lineOutSquare" port2="0_3-input" red="255" green="204" blue="51" />
+    <cable port1="0_3-output1" port2="0_4-gate" red="255" green="204" blue="51" />
+    <cable port1="0_3-output2" port2="2_0-gate" red="255" green="204" blue="51" />
+    <!-- pitch -->
+    <cable port1="0_4-output" port2="0_7-input" red="153" green="0" blue="153" />
+    <cable port1="0_7-output1" port2="1_0-lineInFM" red="153" green="0" blue="153" />
+    <cable port1="0_7-output2" port2="1_3-lineInFM" red="153" green="0" blue="153" />
+    <!-- audio -->
+    <cable port1="1_0-lineOutSawtooth" port2="1_6-input1" red="0" green="204" blue="204" />
+    <cable port1="1_3-lineOutSquare" port2="1_6-input2" red="0" green="204" blue="204" />
+    <cable port1="1_6-output" port2="3_3-input" red="0" green="204" blue="204" />
+    <cable port1="3_3-output" port2="3_5-signIn" red="0" green="204" blue="204" />
+    <cable port1="3_5-signOut" port2="4_0-input" red="0" green="204" blue="204" />
+    <cable port1="4_0-output" port2="4_4-lineIn" red="0" green="204" blue="204" />
+    <!-- envelope -->
+    <cable port1="2_0-output" port2="2_3-signIn" red="51" green="255" blue="51" />
+    <cable port1="2_3-signOut" port2="2_5-input" red="51" green="255" blue="51" />
+    <cable port1="2_5-output1" port2="3_5-amIn" red="51" green="255" blue="51" />
+    <cable port1="2_5-output2" port2="3_0-input1" red="51" green="255" blue="51" />
+    <!-- LFO and filter CV -->
+    <cable port1="2_6-lineOutSine" port2="3_0-input2" red="204" green="0" blue="0" />
+    <cable port1="3_0-output" port2="3_3-freqModInput" red="204" green="0" blue="0" />
+  </liste_cables>
+</content>

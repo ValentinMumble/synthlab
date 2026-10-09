@@ -15,6 +15,7 @@ import java.io.File;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
@@ -58,6 +59,11 @@ public class PLoad extends JDialog implements IPLoad {
      * Message.
      */
     private final String initSearch = "Select a file";
+    /**
+     * Sample montages bundled in the jar (src/main/resources/montages).
+     */
+    private static final String[] SAMPLES = {"Montage1.xml", "Montage2.xml", "AcidArp.xml", "DeepDrone.xml",
+            "DrumMachine.xml", "FMBells.xml", "SpaceSiren.xml"};
 
     /**
      * Constructor of the PLoad.
@@ -83,8 +89,8 @@ public class PLoad extends JDialog implements IPLoad {
             }
         });
         this.setModal(true);
-        this.setMinimumSize(new Dimension(500, 200));
-        this.setSize(500, 200);
+        this.setMinimumSize(new Dimension(500, 240));
+        this.setSize(500, 240);
         this.setPreferredSize(this.getSize());
         setLocationRelativeTo(null);
         chooser = new JFileChooser();
@@ -149,6 +155,40 @@ public class PLoad extends JDialog implements IPLoad {
         cancel.setSize(120, 25);
         cancel.setPreferredSize(search.getSize());
         this.getContentPane().add(cancel, gbcCancel);
+
+        GridBagConstraints gbcSamplesLabel = new GridBagConstraints();
+        gbcSamplesLabel.insets = new Insets(15, 0, 0, 10);
+        gbcSamplesLabel.gridx = 0;
+        gbcSamplesLabel.gridy = 3;
+        this.getContentPane().add(new JLabel("Samples:"), gbcSamplesLabel);
+
+        GridBagConstraints gbcSamples = new GridBagConstraints();
+        gbcSamples.insets = new Insets(15, 0, 0, 10);
+        gbcSamples.gridx = 1;
+        gbcSamples.gridy = 3;
+
+        final JComboBox<String> samples = new JComboBox<>();
+        for (String sample : SAMPLES) {
+            samples.addItem(sample.replace(".xml", ""));
+        }
+        samples.setPreferredSize(search.getSize());
+        this.getContentPane().add(samples, gbcSamples);
+
+        GridBagConstraints gbcLoadSample = new GridBagConstraints();
+        gbcLoadSample.insets = new Insets(15, 0, 0, 0);
+        gbcLoadSample.gridx = 2;
+        gbcLoadSample.gridy = 3;
+
+        JButton loadSample = new JButton("Load sample");
+        loadSample.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                cLoad.loadSample(SAMPLES[samples.getSelectedIndex()]);
+                dispose();
+            }
+        });
+        loadSample.setPreferredSize(search.getSize());
+        this.getContentPane().add(loadSample, gbcLoadSample);
     }
 
     /**
