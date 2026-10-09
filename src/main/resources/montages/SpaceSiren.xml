@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<content size="3" skin="LEATHER">
+  <liste_modules>
+    <!-- Row 0: slow siren LFO, fast trill LFO, pitch mix -->
+    <module ligne="0" position="0" type="VCOA">
+      <attenuation ident="octave" value="1.0" />
+      <attenuation ident="freqfine" value="-50.0" />
+      <jack ident="0_0-lineOutTrinagular" />
+    </module>
+    <module ligne="0" position="3" type="VCOA">
+      <attenuation ident="octave" value="4.0" />
+      <attenuation ident="freqfine" value="0.0" />
+      <jack ident="0_3-lineOutSquare" />
+    </module>
+    <module ligne="0" position="6" type="MIX">
+      <attenuation ident="1" value="-12.0" />
+      <attenuation ident="2" value="-26.0" />
+      <attenuation ident="3" value="0.0" />
+      <attenuation ident="4" value="0.0" />
+      <jack ident="0_6-input1" />
+      <jack ident="0_6-input2" />
+      <jack ident="0_6-output" />
+    </module>
+    <!-- Row 1: square voice, squelchy filter, scope -->
+    <module ligne="1" position="0" type="VCOA">
+      <attenuation ident="octave" value="9.0" />
+      <attenuation ident="freqfine" value="0.0" />
+      <jack ident="1_0-lineInFM" />
+      <jack ident="1_0-lineOutSquare" />
+    </module>
+    <module ligne="1" position="3" type="VCFLP">
+      <attenuation ident="freq" value="1500.0" />
+      <attenuation ident="reso" value="4.0" />
+      <jack ident="1_3-input" />
+      <jack ident="1_3-output" />
+    </module>
+    <module ligne="1" position="5" type="SCOP">
+      <jack ident="1_5-input" />
+      <jack ident="1_5-output" />
+    </module>
+    <!-- Row 2: speakers -->
+    <module ligne="2" position="0" type="OUT" isMute="false">
+      <attenuation ident="0" value="-38.0" />
+      <jack ident="2_0-lineIn" />
+    </module>
+  </liste_modules>
+  <liste_cables>
+    <cable port1="0_0-lineOutTrinagular" port2="0_6-input1" red="204" green="0" blue="0" />
+    <cable port1="0_3-lineOutSquare" port2="0_6-input2" red="255" green="204" blue="51" />
+    <cable port1="0_6-output" port2="1_0-lineInFM" red="153" green="0" blue="153" />
+    <cable port1="1_0-lineOutSquare" port2="1_3-input" red="0" green="204" blue="204" />
+    <cable port1="1_3-output" port2="1_5-input" red="0" green="204" blue="204" />
+    <cable port1="1_5-output" port2="2_0-lineIn" red="0" green="204" blue="204" />
+  </liste_cables>
+</content>

@@ -15,4 +15,12 @@ public interface IALoad {
      *            Path where to found the file.
      */
     void load(String chooserPath);
+
+    /**
+     * Function that load one of the sample montages bundled in the jar.
+     *
+     * @param fileName
+     *            Name of the file in the montages resource folder.
+     */
+    void loadSample(String fileName);
 }

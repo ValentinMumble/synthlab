@@ -1,6 +1,7 @@
 package fr.istic.synthlab;
 
 import java.awt.Image;
+import java.awt.Taskbar;
 
 import javax.swing.JFrame;
 
@@ -30,8 +31,9 @@ public abstract class Synthlab {
         
 
         OS_NAME = System.getProperty("os.name");
-        if (OS_NAME.contains("Mac")) {
-            com.apple.eawt.Application.getApplication().setDockIconImage(icon);
+        if (Taskbar.isTaskbarSupported()
+                && Taskbar.getTaskbar().isSupported(Taskbar.Feature.ICON_IMAGE)) {
+            Taskbar.getTaskbar().setIconImage(icon);
         }
 
         JFrame frame = (JFrame) CGLOB.getInstance().getPresentation();

@@ -42,7 +42,7 @@
       <jack ident="2_3-input" />
       <jack ident="2_3-output" />
     </module>
-    <module ligne="2" position="7" type="OUT" isMute="true">
+    <module ligne="2" position="7" type="OUT" isMute="false">
       <attenuation ident="0" value="0.0" />
       <jack ident="2_7-lineIn" />
     </module>

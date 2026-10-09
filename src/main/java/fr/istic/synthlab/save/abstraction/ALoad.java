@@ -235,7 +235,36 @@ public class ALoad implements IALoad {
             LOGGER.info("Error read file");
             LOGGER.info(e.toString());
         }
+        this.loadRoot(racine);
+    }
 
+    /**
+     * Function that load one of the sample montages bundled in the jar.
+     *
+     * @param fileName
+     *            Name of the file in the montages resource folder.
+     */
+    @Override
+    public void loadSample(String fileName) {
+        SAXBuilder sxb = new SAXBuilder();
+        Element racine = null;
+        try {
+            racine = sxb.build(ALoad.class.getResource("/montages/" + fileName))
+                    .getRootElement();
+        } catch (Exception e) {
+            LOGGER.info("Error read sample " + fileName);
+            LOGGER.info(e.toString());
+        }
+        this.loadRoot(racine);
+    }
+
+    /**
+     * Function that load the model contained in the XML root element.
+     *
+     * @param racine
+     *            Root element of the montage, or null if it could not be read.
+     */
+    private void loadRoot(Element racine) {
         if (racine != null) {
             CGLOB.getInstance().getCPanelContent().reinitForLoad();
             // grid initialization
